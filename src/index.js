@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom'
 
 //create clock in React
 
-setInterval(function(){
+function Clock()
+{
+	return <h1>The local time is: {new Date().toLocaleTimeString()}</h1>
 
-	function Clock()
-	{
-		return <h1>The local time is: {new Date().toLocaleTimeString()}</h1>
+}
 
-	}
+function time()
+{
 	ReactDOM.render(
      <Clock />,
 
 		document.getElementById('root')
 	);
-},1000);
+}
+
+setInterval(function(){time()},1000);
