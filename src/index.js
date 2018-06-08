@@ -4,9 +4,14 @@ import ReactDOM from 'react-dom'
 //create clock in React
 
 setInterval(function(){
-	ReactDOM.render(
 
-		 <h1>The local time is: {new Date().toLocaleTimeString()}</h1>,
+	function Clock()
+	{
+		return <h1>The local time is: {new Date().toLocaleTimeString()}</h1>
+
+	}
+	ReactDOM.render(
+     <Clock />,
 
 		document.getElementById('root')
 	);
