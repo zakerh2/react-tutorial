@@ -1,56 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-//create clock in React
+class Inc extends React.Component {
 
-// function Clock()
-// {
-// 	return <h1>The local time is: {new Date().toLocaleTimeString()}</h1>
-
-// }
-
-class Clock extends React.Component
-{
 	constructor(props)
 	{
-		super(props);
-		this.state = {
-			date: new Date()
-		}
-
+		super(props)
+		this.state = {counter : 0}
+		//bind this to increment function
+		//this.increment = this.increment.bind(this)
 	}
 
-	//this function runs when the the page is loadid
-
-	componentDidMount()
+	increment =(e) =>
 	{
-		this.timer = setInterval(() => this.start(),1000)
-
-	}
-
-    //this function run when the the page is to close
-	componentWillUnmount()
-	{
-		clearInterval(this.timer);
-	}
-
-	start()
-	{
+		e.preventDefault();
 		this.setState({
-			date: new Date()
+			counter : this.state.counter + 1
 		});
 	}
 
 	render(){
-		return <h1>The local time is: {this.state.date.toLocaleTimeString()}</h1>
+		return <button onClick={/*(e)=> this.increment(e) */ this.increment}>The Value is {this.state.counter}</button>
 	}
+
 }
+//render apps
 
-/// render the Dom
-	ReactDOM.render(
-     <Clock />,
-
-		document.getElementById('root')
-	);
-
-
+ReactDOM.render(
+	<Inc/>,
+	document.getElementById('root')
+)
