@@ -1,40 +1,56 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-class FormTest extends React.Component{
+class Calculator extends React.Component {
 
 	constructor(props)
 	{
-		super(props);
-		this.state = {value: ''}
+		super(props)
+		this.state = {scale:'c',temp:0}
 	}
 
-	handleSubmit = (e) => {
-		
-		console.log(this.state.value)
-		e.preventDefault()
-	}
+	handleCgrade = (e) => {
 
-	handleChange = (e) => {
 		this.setState({
-			value: e.target.value
-		});
+			scale:'c',temp:e.target.value
+		})
+
 	}
-	render(){
+
+	handleFahrheit = (e) => {
+
+		this.setState({
+			scale:'f',temp:e.target.value
+		})
+
+	}
+
+	render() 
+	{
+		const temp = this.state.temp
+		const scale = this.state.scale
+
+		const cgrade = scale === 'f' ? (temp - 32)*5/9: temp
+		const fgrade = scale === 'c' ? (temp * 9/5) +32 :temp
 
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<input type='text' value={this.state.value}  onChange={this.handleChange}/>
-				<input type='submit' value='Send' />
-			</form>
+			<div>
+				<fieldset>
+					<legend>C Grade</legend>
+					<input type="text" value={cgrade} onChange={this.handleCgrade} />
+				</fieldset>
+
+				<fieldset>
+					<legend>F Grade</legend>
+					<input type="text" value={fgrade} onChange={this.handleFahrheit} />
+				</fieldset>
+			</div>
 			);
 	}
-	
 }
-
 
 ReactDOM.render(
 
-		<FormTest / >, 
+		<Calculator / >, 
 		document.getElementById('root')
 	);
