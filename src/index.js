@@ -1,22 +1,40 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+class FormTest extends React.Component{
 
-
-function ListItem(props)
-{
-	const clist = props.cartoon
-	return <ul>
+	constructor(props)
 	{
-		clist.map((clist, index) => <li key={index}>{clist}</li>)
+		super(props);
+		this.state = {value: ''}
 	}
-	</ul>
+
+	handleSubmit = (e) => {
+		
+		console.log(this.state.value)
+		e.preventDefault()
+	}
+
+	handleChange = (e) => {
+		this.setState({
+			value: e.target.value
+		});
+	}
+	render(){
+
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<input type='text' value={this.state.value}  onChange={this.handleChange}/>
+				<input type='submit' value='Send' />
+			</form>
+			);
+	}
+	
 }
 
-const list = ['ahmad','zaker','ali','ali'];
+
 ReactDOM.render(
 
-		<ListItem cartoon={list}/>,
-
+		<FormTest / >, 
 		document.getElementById('root')
 	);
