@@ -2,49 +2,21 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-function Message(props)
+
+function ListItem(props)
 {
-	if(props.value)
+	const clist = props.cartoon
+	return <ul>
 	{
-		return <h2>I am the first Message</h2>
-
+		clist.map((clist, index) => <li key={index}>{clist}</li>)
 	}
-	
-	return <h2>I am the 2nd Message</h2>
-
-}
-class Btn extends React.Component
-{
-	constructor(props)
-	{
-		super(props);
-		this.state = {
-			value: true,
-		}
-	}
-
-	handleMessag =() => {
-
-		this.setState({
-			value: !this.state.value
-		})
-	}
-
-
-	render()
-	{
-		return (
-				<div>
-					<button onClick={this.handleMessag} > Change The Message </button>
-					<Message value={this.state.value} />
-				</div>
-			)
-	}
+	</ul>
 }
 
+const list = ['ahmad','zaker','ali','ali'];
 ReactDOM.render(
 
-	<Btn/>,
+		<ListItem cartoon={list}/>,
 
-	document.getElementById('root')
-)
+		document.getElementById('root')
+	);
